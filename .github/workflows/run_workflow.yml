@@ -1,17 +1,21 @@
-name: running vite app
+name: Deployment Exercise 1
 on: [push]
 jobs:
-    run-app:
+    deploy:
         runs-on: ubuntu-latest
         steps:
-            - name: pull-code
+            - name: Get code
               uses: actions/checkout@v3
+            # if want to provide configuration
+            #   with:
+            #     ...
             - name: install dependencies
-              run: npm install
+              run: npm ci
             - name: lint
-              run: npm run build
-            - name: test
+              run: npm run lint
+            - name: test code
               run: npm run test
-            - name: build
+            - name: Build code
               run: npm run build
-        
+            - name: Deploy code
+              run: echo "Deploying ..."
